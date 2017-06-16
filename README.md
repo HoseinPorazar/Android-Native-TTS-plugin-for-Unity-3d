@@ -24,13 +24,16 @@ Methods :
 
  public void Speak(string toSay,OnErrorCallbackHandler callback) 
 
- // this returns errors of Text To Speech result. use this to detect    errors and fix them . for example error happens when device haven't installed Text to speech engine. or error happens when specified language is not supported or not installed.
+ // this returns errors of Text To Speech result. use this to detect    errors and fix them .
+ //for example error happens when device haven't installed Text to speech engine.
+ //or error happens when specified language is not supported or not installed.
  
  2-Set text to speech Language:
 
   public void SetLanguage(Locale lan)
 
-  //setting language of text to speech for example : SetLanguage(Locale.UK)  i have included 2 languages (UK,and US) if you want to use other languages you will have to modify plugin ( with Android Studio).
+  //setting language of text to speech for example : SetLanguage(Locale.UK) 
+  // I have included 2 languages (UK,and US) if you want to use other languages you will have to modify plugin ( with Android Studio).
  
  3-Setting Text To Speech Speed :
 
