@@ -1,7 +1,7 @@
 Android native Text To Speech plugin for Unity 3d
 
 Simple Implementation of android Text To Speech to use in Unity 3d.
-
+with abilty to change TTS speed and pitch and Language and callback for errors.
 if you are creating a Unity 3d project for Android devices , and you want to implement Text To Speech in your project , you can use this plugin.
 This plugin is written in Android Studio V2.3 , plugin source code in Android Studio is Available to download, you can download and modify based on your needs.
 
