@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "25.0.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+    dependencies {
+        provided files('./libs/classes.jar')
+    }
+    android.libraryVariants.all { variant ->
+        // Task names.
+        String variantName = "${variant.name.capitalize()}"; // Like 'Debug'
+        String deployTaskGroup = "plugin";
+        String deployTaskName = "deploy${variantName}PluginArchive"; // Like 'deployDebugPluginArchive'
+        String dependencyTaskName = "assemble${variantName}"; // Like 'assembleDebug'
+        // Source.
+        String sourceAARFolder = "${buildDir.getPath()}/outputs/aar/";
+        String sourceAARName = "${project.name}-${variant.name}.aar";
+        // Target.
+        String targetAssetFolder = "Assets/Plugins/My Plugin";
+        String targetAARFolder = "${rootDir.getPath()}/../../${targetAssetFolder}"; // Navigate into 'Assets'
+        String targetAARName = "My Plugin Android.aar"; // The form you ship your plugin
+        // Create task.
+        task(deployTaskName, dependsOn: dependencyTaskName, type: Copy) {
+            from(sourceAARFolder)
+            into(targetAARFolder)
+            include(sourceAARName)
+            rename(sourceAARName, targetAARName)
+        }.group = deployTaskGroup;
+    }
+
